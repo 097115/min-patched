@@ -274,7 +274,7 @@ function buildAppMenu (options = {}) {
         {
           label: l('appMenuFullScreen'),
           accelerator: (function () {
-            if (process.platform == 'darwin') { return 'Ctrl+Command+F' } else { return 'F11' }
+            if (process.platform == 'darwin') { return 'Ctrl+Command+F' } else { return 'F10' }
           })(),
           role: 'togglefullscreen'
         }
@@ -288,15 +288,6 @@ function buildAppMenu (options = {}) {
           accelerator: (function () {
             if (process.platform == 'darwin') { return 'Cmd+Alt+I' } else { return 'Ctrl+Shift+I' }
           })(),
-          click: function (item, window) {
-            sendIPCToWindow(window, 'inspectPage')
-          }
-        },
-        // this is defined a second time (but hidden) in order to provide two keyboard shortcuts
-        {
-          label: l('appMenuInspectPage'),
-          visible: false,
-          accelerator: 'f12',
           click: function (item, window) {
             sendIPCToWindow(window, 'inspectPage')
           }
