@@ -62,3 +62,20 @@ window.addEventListener('message', function (e) {
     ipc.send('downloadFile', e.data.url)
   }
 })
+
+// https://github.com/minbrowser/min/issues/2417#issuecomment-2040508215
+electron.webFrame.insertCSS(`
+html {
+  background-color: #ddd;
+  filter: hue-rotate(180deg) invert(100%) !important;
+}
+body {
+  margin: 0;
+  background-color: #ddd;
+  /* twitter.com */
+  min-height: 100vh;
+}
+
+iframe, img, video, canvas {
+filter: hue-rotate(180deg) invert(100%) !important;
+}`)
