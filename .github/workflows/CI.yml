@@ -1,0 +1,24 @@
+name: CI
+
+permissions:
+  contents: write
+
+on:
+  push:
+    tags:
+      - "*"
+jobs:
+  buildDebian:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v7
+    - run: npm install
+    - name: build
+      run: npm run buildDebian
+    - name: release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: dist/app/*.deb
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
